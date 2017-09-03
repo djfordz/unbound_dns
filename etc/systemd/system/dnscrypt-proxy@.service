@@ -1,0 +1,12 @@
+[Unit]
+Description=DNSCrypt client proxy
+Documentation=man:dnscrypt-proxy(8)
+Requires=dnscrypt-proxy@%i.socket
+
+[Service]
+User=dnscrypt
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+Type=notify
+NonBlocking=true
+ExecStart=/usr/bin/dnscrypt-proxy --ephemeral-keys --resolver-name=%i
+Restart=always
